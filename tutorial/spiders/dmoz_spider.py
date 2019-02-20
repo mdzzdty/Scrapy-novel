@@ -11,6 +11,6 @@ class DmozSpider(scrapy.Spider):
 
     def parse(self,response):
         item = MinuItem()
-        item['novelName'] = response.xpath("//div[@class='book_bg']/a").extract()
-        item['novelUrl'] = response.xpath("//div[@id='menu']/div/ul/li/a").extract()
-        print(dict(item))
+        item['novelName'] = response.xpath("//div[@id='menu']/div/ul/li/a/text()").extract()
+        item['novelUrl'] = response.xpath("//div[@id='menu']/div/ul/li/a/@href").extract()
+        
