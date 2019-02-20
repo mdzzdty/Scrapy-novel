@@ -1,15 +1,16 @@
 import scrapy
 
+from tutorial.items import MinuItem
+
 class DmozSpider(scrapy.Spider):
     name = "dmoz"
-    allowed_domains = ["dmoz.org"]
+    #allowed_domains = ["dmoz.org"]
     start_urls = [
-        "https://scrapy-chs.readthedocs.io/zh_CN/0.24/intro/examples.html"
+        "https://www.80txt.com"
     ]
 
     def parse(self,response):
-        filename = response.xpath("//div/p/text()|//div/p/a/text()").extract()
-        text = ''
-        for string in filename:
-            text = text+string
-        print(text)
+        item = MinuItem()
+        item['novelName'] = response.xpath("//div[@class='book_bg']/a").extract()
+        item['novelUrl'] = response.xpath("//div[@id='menu']/div/ul/li/a").extract()
+        print(dict(item))

@@ -1,0 +1,43 @@
+#爬取源
+https://www.80txt.com/
+
+#获取小说分类
+//div[@id='menu']/div/ul/li/a
+
+#获取小说名
+//div[@class='book_bg']/a
+
+#获取小说链接
+//div[@class='book_bg']/a/@href
+
+#获取目录
+//div/li/b/a[text()='在线阅读_目录']/@href
+
+#获取章节链接
+//div/li/a/@href
+
+#获取小说正文
+//div[@class='book_content']
+
+
+#链接去重
+1、默认start_urls里的链接不会去重。
+如果要实现需要重写start_requests。
+
+def start_requests(self):
+    for url in self.start_urls:
+        yield Request(url, **dont_filter**=True)
+2、是否去重由dont_filter控制
+scrapy.Request（）添加参数dont_filter=False才会去重。
+
+
+<a href="/txtxz/77050/down.html" 
+title="点击进入大夏纪TXT下载" id="read_book" 
+class="xh-highlight">TXT下载列表</a>
+
+<a href="https://www.80txt.com/txtml_77050.html" 
+title="点击进入大夏纪章节目录" id="read_book" 
+class="xh-highlight">在线阅读_目录</a>
+
+
+
