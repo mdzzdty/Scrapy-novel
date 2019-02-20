@@ -8,6 +8,10 @@
 import scrapy
 
 class MinuItem(scrapy.Item):
+    novelClass = scrapy.Field()
+    novelClassUrl = scrapy.Field()
+
+class NameItem(scrapy.Item):
     novelName = scrapy.Field()
     novelUrl = scrapy.Field()
 
