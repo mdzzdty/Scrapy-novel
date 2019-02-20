@@ -8,6 +8,8 @@ class DmozSpider(scrapy.Spider):
     ]
 
     def parse(self,response):
-        filename = response.xpath("//div/p/text()|//div/p/a/text()").extract
-        with open("test.txt",'wb') as f:
-            print(type(filename))
+        filename = response.xpath("//div/p/text()|//div/p/a/text()").extract()
+        text = ''
+        for string in filename:
+            text = text+string
+        print(text)
